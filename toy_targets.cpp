@@ -457,7 +457,29 @@ Eigen::ArrayXd ModifiedRosenbrockAXd(size_t n, std::mt19937 &gen, std::normal_di
   return out;
 }
 
-
+// ************* Banana ***********************
+double l_Banana(const ArrayXd &x, const ArrayXd &thetas) {
+  double b = 0.3;
+  double Z = 10.0 * 2.0 * _PI;
+  
+  MatrixXd C_inv = MatrixXd::Zero(2, 2);
+  C_inv(0,0) = 0.01;
+  C_inv(1,1) = 1.0;
+  
+  VectorXd trans_x = VectorXd::Zero(2);
+  trans_x(0) = x(0);
+  trans_x(1) = x(1) - b * pow(x(0), 2.0) + 100.0 * b;
+  
+  double to_ret = (trans_x.transpose() * C_inv * trans_x)(0,0);
+  return -log(Z) - 0.5 * to_ret;
+}
+VectorXd gl_Banana(const ArrayXd &x, const ArrayXd &thetas) {
+  double b = 0.3;
+  VectorXd grad = VectorXd::Zero(2);
+  grad(0) = -0.5 * 0.01 * 2.0 * x(0) - 0.5 * 2.0 * (x[1] - b * pow(x(0), 2.0) + 100.0 * b) * (-2.0 * b * x(0));
+  grad(1) = -0.5 * 2.0 * (x(1) - b * pow(x(0), 2.0) + 100.0 * b);
+  return grad;
+}
 
 /*
 // Test 

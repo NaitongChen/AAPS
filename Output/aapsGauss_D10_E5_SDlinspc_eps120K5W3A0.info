@@ -1,0 +1,9 @@
+
+***nits=10000, eps=1.2, K=5, precon=0
+***
+Acc = 0.8749
+Time: 1899
+***APPSStats: nstored=10000
+accbar=0.8749 (RB=0.879119), trubar=0.8749, arbar=0.999705, unstablebar=0
+ltotbar=27.5962 (sd=9.52811), kpropbar=2.285 (sd=1.27819)
+Kprops (normalised&standardised):  37  82 135 129 117  96

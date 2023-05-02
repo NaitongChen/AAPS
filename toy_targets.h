@@ -77,3 +77,6 @@ Eigen::ArrayXd StdUnifAXd(size_t n, std::mt19937 &gen, std::uniform_real_distrib
 Eigen::ArrayXd StdLogisticAXd(size_t n, std::mt19937 &gen, std::uniform_real_distribution<double> StdUnif);
 Eigen::ArrayXd ModifiedRosenbrockAXd(size_t n, std::mt19937 &gen, std::normal_distribution<double> StdNormal, const Eigen::ArrayXd &theta);
 
+//******* Banana ********
+double l_Banana(const Eigen::ArrayXd &x, const Eigen::ArrayXd &th);
+Eigen::VectorXd gl_Banana(const Eigen::ArrayXd &x, const Eigen::ArrayXd &theta);

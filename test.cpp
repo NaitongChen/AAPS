@@ -127,6 +127,9 @@ int main(int argc, const char** pargv)  {
     targ_type<<0,50,2,10;
     cout << "50d Gaussian with diag Hess linear from 1 to 100\n";
   }
+  else if (targ==2) {
+    targ_type<<4,2,-1,1;
+  } 
   else {
     // Ddddseee   D=distribution, d=dimension, s=scale spacing, e=eccentricity
     
@@ -276,7 +279,21 @@ int main(int argc, const char** pargv)  {
     likelihood.theta=thetall;
     likelihood.pl_fn=&l_ModifiedRosenbrock;
     likelihood.pgl_fn=&gl_ModifiedRosenbrock;
-  }	
+  }	else if (targ_type(0) == 4){
+    targstr = "banana";
+    d = 2;
+
+    x0 = ArrayXd::Zero(d);
+    x0(0) = 17.25;
+    x0(1) = 40.0;
+    
+    prior.theta=ArrayXd::Zero(1); // any value as is irrelevant
+    prior.pl_fn=&l_null;
+    prior.pgl_fn=&gl_null;
+    likelihood.theta=ArrayXd::Zero(1); // any value as is irrelevant
+    likelihood.pl_fn=&l_Banana;
+    likelihood.pgl_fn=&gl_Banana;
+  }
 
   cout << targstr << "\n";
 
